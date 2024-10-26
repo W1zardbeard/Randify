@@ -1,18 +1,22 @@
 h1{
-    @include font(2rem, 700, 0px, 48px);
+    @include font(1.5rem, 700, 0px, 29px);
  
 }
 
 h2{
-    @include font(1rem, 700, 0, 24px);
+    @include font(1.250rem, 400, 1px, 24px);
 }
 
-p{
+h3{
     @include font(1rem, 400, 0, 24px);
 }
 
-.bodySmall{
-    @include font(0.75rem, 400, 0, 18px);
+p{
+    @include font(0.875rem, 400, 0, 17px);
+}
+
+.menuText{
+    @include font(1rem, 400, 0, 18px);
 }
 
 a{

@@ -57,8 +57,8 @@ h1 {
   font-weight: 700;
   font-style: normal;
   letter-spacing: 0px;
-  font-size: 2rem;
-  line-height: 48px;
+  font-size: 1.5rem;
+  line-height: 29px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -67,7 +67,20 @@ h1 {
 h2 {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 700;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1px;
+  font-size: 1.25rem;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h3 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
   font-style: normal;
   letter-spacing: 0;
   font-size: 1rem;
@@ -83,20 +96,20 @@ p {
   font-weight: 400;
   font-style: normal;
   letter-spacing: 0;
-  font-size: 1rem;
-  line-height: 24px;
+  font-size: 0.875rem;
+  line-height: 17px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-.bodySmall {
+.menuText {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 0;
-  font-size: 0.75rem;
+  font-size: 1rem;
   line-height: 18px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
