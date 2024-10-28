@@ -1,8 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import ReactDOM from 'react-dom/client'
-import Login from './pages/Login'
+import App from './pages/App'
 import ErrorPage from './pages/ErrorPage' 
+import Dashboard from './pages/Dashboard'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -11,7 +12,12 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",	
-    element: <Login />,
+    element: <App />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
     errorElement: <ErrorPage />,
   },
 ]);
