@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import App from './pages/App'
 import ErrorPage from './pages/ErrorPage' 
 import Dashboard from './pages/Dashboard'
+import AuthHook from './hooks/AuthHook'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/auth",
+    element: <AuthHook />,
     errorElement: <ErrorPage />,
   },
 ]);

@@ -15,16 +15,17 @@ export default function UseAuth(code:string) {
     useEffect(() => {
         if (!code) return;
         console.log("ive been passed a valid code");
+
         axios.post("/api/login", {
             code
         }).then((res:any) => {
-            
+         
             setAccessToken(res.data.accessToken);
             setRefreshToken(res.data.refreshToken);
             setExpiresIn(res.data.expiresIn);
         }).catch((error:any) => {
             console.log(error);
-            navigate('/');
+            // navigate('/');
         })
     },[code])
 

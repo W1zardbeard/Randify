@@ -30,16 +30,6 @@ const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI
   });
 
-// // Database connection
-// const db = new pg.Client({
-//     user: process.env.PG_USER,
-//     host: process.env.HOST,
-//     database: process.env.DATABASE,
-//     password: process.env.PASSWORD,
-//     port: process.env.PORT,
-// });
-
-// db.connect();
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -60,44 +50,42 @@ app.get("/api/getAuthUrl", async (req, res) => {
 // ==============================
 // Endpoint to handle Spotify login
 // ==============================
-app.post("/api/login", async (req, res) => {
-  // Extract authorization code from request body
-  const code = req.body.code;
-  console.log(code);
-   
-  // Use the authorization code to get access and refresh tokens
-  spotifyApi.authorizationCodeGrant(code).then(data => {
-    // Send tokens and expiration time as response
-    res.json({
-      accessToken: data.body.access_token,
-      refreshToken: data.body.refresh_token,
-      expiresIn: data.body.expires_in,
+app.get("/api/authCallback", async (req, res) => {
+  const error = req.query.error;
+  const code = req.query.code;
+
+
+  try{
+    spotifyApi.authorizationCodeGrant(code).then(data =>{
+      const accessToken = data.body['access_token'];
+      const refreshToken = data.body['refresh_token'];
+      const expiresIn = data.body['expires_in'];
+      console.log("Access Token: ", accessToken);
+      console.log("Refresh Token: ", refreshToken);
+      console.log("Expires in: ", expiresIn);
+
+      //redirect to authcapture and send the tokens as json object
+      //res.redirect(`http://localhost:5173/Auth?accessToken=${accessToken}&refreshToken=${refreshToken}&expiresIn=${expiresIn}`);
+      res.json({accessToken, refreshToken, expiresIn});
+      
+
+     
+     
+
+      setInterval(async() =>{
+        const data = await spotifyApi.refreshAccessToken();
+        const accessTokenRefreshed = data.body['access_token'];
+        spotifyApi.setAccessToken(accessTokenRefreshed);
+      }, expiresIn/2*1000);
     });
-  }).catch(err => {
-    // Log error and send 400 status if something goes wrong
+    
+    
+  }catch(err){
     console.log(err);
-    res.sendStatus(400);
-  });
+  }
+  
 });
 
-app.post("/api/refresh", async (req, res) => {
-  // Extract refresh token from request body
-  const refreshToken = req.body.refreshToken;
-
-  // Use the refresh token to get a new access token
-  spotifyApi.setRefreshToken(refreshToken);
-  spotifyApi.refreshAccessToken().then(data => {
-    // Send new access token as response
-    res.json({
-      accessToken: data.body.access_token,
-      expiresIn: data.body.expires_in,
-    });
-  }).catch(err => {
-    // Log error and send 400 status if something goes wrong
-    console.log(err);
-    res.sendStatus(400);
-  });
-});
 
 
 
