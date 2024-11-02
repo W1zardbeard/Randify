@@ -1,0 +1,27 @@
+.login{
+    background-color:$lightColdGrey;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    .loginContainer{
+        width:50%;
+        background-color:$lightWarmGrey;
+        height: 100%;
+        display:flex;
+        flex-direction:column;
+        gap:$s2;
+        align-items: center;
+        justify-content:center;
+    }
+
+    .splashImg{
+        width:50%;
+        background-image: url('../assets/loginSplash.png');
+        height:100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+}
