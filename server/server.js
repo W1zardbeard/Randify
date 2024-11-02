@@ -24,22 +24,12 @@ env.config();
 app.use(cors());
 
 // Spotify API
-const spotifyApi = new SpotifyWebApi({
-    clientId: process.env.SPOTIFY_CLIENT_ID,
-    clientSecret: process.env.SPOTIFY_SECRET,
-    redirectUri: process.env.REDIRECT_URI
-  });
+// const spotifyApi = new SpotifyWebApi({
+//     clientId: process.env.SPOTIFY_CLIENT_ID,
+//     clientSecret: process.env.SPOTIFY_SECRET,
+//     redirectUri: process.env.REDIRECT_URI
+//   });
 
-// // Database connection
-// const db = new pg.Client({
-//     user: process.env.PG_USER,
-//     host: process.env.HOST,
-//     database: process.env.DATABASE,
-//     password: process.env.PASSWORD,
-//     port: process.env.PORT,
-// });
-
-// db.connect();
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -53,51 +43,86 @@ app.use(bodyParser.json());
 // Endpoint to get Spotify authorization URL
 // ==============================
 app.get("/api/getAuthUrl", async (req, res) => {
+
+  const spotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_CLIENT_ID,
+    clientSecret: process.env.SPOTIFY_SECRET,
+    redirectUri: process.env.REDIRECT_URI
+  });
+
   const scopes = ['user-read-private', 'user-read-email', 'user-read-playback-state', 'user-modify-playback-state', 'streaming'];
   res.send(spotifyApi.createAuthorizeURL(scopes));
 });
 
+
 // ==============================
-// Endpoint to handle Spotify login
+// Endpoint to handle Spotify login and get tokens back
 // ==============================
-app.post("/api/login", async (req, res) => {
-  // Extract authorization code from request body
+app.post("/api/login", (req, res) => {
+
+  const spotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_CLIENT_ID,
+    clientSecret: process.env.SPOTIFY_SECRET,
+    redirectUri: process.env.REDIRECT_URI
+  });
+
   const code = req.body.code;
-  console.log(code);
-   
-  // Use the authorization code to get access and refresh tokens
-  spotifyApi.authorizationCodeGrant(code).then(data => {
-    // Send tokens and expiration time as response
+
+  spotifyApi
+  .authorizationCodeGrant(code)
+  .then(data => {
     res.json({
       accessToken: data.body.access_token,
       refreshToken: data.body.refresh_token,
-      expiresIn: data.body.expires_in,
-    });
-  }).catch(err => {
-    // Log error and send 400 status if something goes wrong
+      expiresIn: data.body.expires_in
+    })
+  }
+  ).catch(err => {
     console.log(err);
     res.sendStatus(400);
   });
 });
 
-app.post("/api/refresh", async (req, res) => {
-  // Extract refresh token from request body
-  const refreshToken = req.body.refreshToken;
+// ==============================
+// Endpoint refreshtoken
+// ==============================
 
-  // Use the refresh token to get a new access token
-  spotifyApi.setRefreshToken(refreshToken);
-  spotifyApi.refreshAccessToken().then(data => {
-    // Send new access token as response
+
+app.post("/api/refresh", (req, res) => {
+  const refreshToken = req.body.refreshToken;
+ 
+  const spotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_CLIENT_ID,
+    clientSecret: process.env.SPOTIFY_SECRET,
+    redirectUri: process.env.REDIRECT_URI,
+    refreshToken,
+  });
+
+  spotifyApi.refreshAccessToken()
+  .then((data) => {
     res.json({
       accessToken: data.body.access_token,
-      expiresIn: data.body.expires_in,
+      expiresIn: data.body.expires_in
     });
-  }).catch(err => {
-    // Log error and send 400 status if something goes wrong
-    console.log(err);
-    res.sendStatus(400);
-  });
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(400);
+    });
+   
+    
+
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 

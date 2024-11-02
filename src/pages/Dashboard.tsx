@@ -1,32 +1,16 @@
 import { useEffect, useState } from "react";
 import UseAuth from "../hooks/UseAuth";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
-export default function Dashboard() {
+export default function Dashboard(props: any) {
 
-    const [code, setCode] = useState('');
-    
-    useEffect(() => {
-        const code = localStorage.getItem('code');
-        setCode(code!);
-        
-    }
-    ,[])
+    const accessToken = UseAuth(props.code);
 
-    
-    
-    const accessToken = UseAuth(code!);
-   
-    
-    console.log(accessToken);
-
-
-    
-   
-    
     return (
         <div>
-            <h1>Dashboard</h1>
+            <h1>{props.code}</h1>
         </div>
     )
 }
