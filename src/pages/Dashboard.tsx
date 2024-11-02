@@ -10,23 +10,31 @@ const spotifyApi = new SpotifyWebApi({
     clientId: 'e04c17fe2a1046138368640ad64f555e',
 });
 
-const code = new URLSearchParams(window.location.search).get('code');
+
 
 
 export default function Dashboard(props: any) {
 
-    const accessToken = UseAuth(props.code);
+    //navigate setup
+    const navigate = useNavigate();
 
+    //get access token
+    const accessToken = localStorage.getItem('accessToken');
+
+    //get user
     const [user, setUser] = useState<any>({});
 
     
-
+    //check if access token is present and set it in the spotify api object 
     useEffect(() => {
-        if(!accessToken) return;
+        if(!accessToken){
+            navigate('/');
+            return;
+        }
         spotifyApi.setAccessToken(accessToken);
     }, [accessToken]);
 
-
+    //get user info from spotify api
     useEffect(() => {
         if(!accessToken) return;
         spotifyApi.getMe().then((res) => {
