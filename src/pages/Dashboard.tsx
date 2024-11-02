@@ -4,21 +4,13 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
-export default function Dashboard() {
+export default function Dashboard(props: any) {
 
- 
-  
-   
-    
-  
+    const accessToken = UseAuth(props.code);
 
-
-    
-   
-    
     return (
         <div>
-            <h1>Dashboard</h1>
+            <h1>{props.code}</h1>
         </div>
     )
 }

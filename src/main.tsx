@@ -21,11 +21,7 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     errorElement: <ErrorPage />,
   },
-  {
-    path: "/auth",
-    element: <AuthHook />,
-    errorElement: <ErrorPage />,
-  },
+
 ]);
 
 createRoot(document.getElementById('root')!).render(

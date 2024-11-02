@@ -1,52 +1,44 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 export default function UseAuth(code:string) {
     
-    // Navigate
-    const navigate = useNavigate();
+   const [accessToken, setAccessToken] = useState('');
+   const [refreshToken, setRefreshToken] = useState('');
+   const [expiresIn, setExpiresIn] = useState('');
 
-    // State variables to store access token, refresh token and expiry time
-    const [accessToken, setAccessToken] = useState('');
-    const [refreshToken, setRefreshToken] = useState('');
-    const [expiresIn, setExpiresIn] = useState(0);
-
-    // Get access token
-    useEffect(() => {
-        if (!code) return;
-        console.log("ive been passed a valid code");
-
-        axios.post("/api/login", {
-            code
+   useEffect(() =>{
+        axios.post('/api/login', {
+            code,
         }).then((res:any) => {
-         
             setAccessToken(res.data.accessToken);
             setRefreshToken(res.data.refreshToken);
             setExpiresIn(res.data.expiresIn);
+
+            window.history.pushState({}, '', '/');
         }).catch((error:any) => {
-            console.log(error);
-            // navigate('/');
+            window.location = '/';
         })
-    },[code])
+   }, [code])
 
 
-    // Refresh token
-    useEffect(() => {
-        if (!refreshToken || !expiresIn) return;
-        const timeout = setTimeout(() => {
-        axios.post("/api/refresh", {
-            refreshToken
+   useEffect(() => {
+    if(!refreshToken || !expiresIn) return;
+
+    const interval = setInterval(() => {
+        axios.post('/api/refresh', {
+            refreshToken,
         }).then((res:any) => {
-            setAccessToken(res.data.accessToken);
             setExpiresIn(res.data.expiresIn);
+            setAccessToken(res.data.accessToken);
         }).catch((error:any) => {
-            console.log(error);
-            navigate('/');
+            window.location = '/';
         })
-        }, (expiresIn - 60) * 1000)
-        return () => clearTimeout(timeout);
-    },[refreshToken, expiresIn])
+    },(expiresIn - 60) * 1000);
+    return () => clearInterval(interval);
 
-    
-    return accessToken;
+   }, [refreshToken, expiresIn])
+
+   return accessToken;
+
+  
 }
