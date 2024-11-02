@@ -124,46 +124,6 @@ app.post("/api/refresh", (req, res) => {
 
 
 
-// ==============================
-// Endpoint to handle Spotify login
-// ==============================
-app.get("/api/babababa", async (req, res) => {
-  const error = req.query.error;
-  const code = req.query.code;
-
-
-  try{
-    spotifyApi.authorizationCodeGrant(code).then(data =>{
-      const accessToken = data.body['access_token'];
-      const refreshToken = data.body['refresh_token'];
-      const expiresIn = data.body['expires_in'];
-      console.log("Access Token: ", accessToken);
-      console.log("Refresh Token: ", refreshToken);
-      console.log("Expires in: ", expiresIn);
-
-     
-
-      res.redirect("/dashboard");
-      
-
-     
-     
-
-      setInterval(async() =>{
-        const data = await spotifyApi.refreshAccessToken();
-        const accessTokenRefreshed = data.body['access_token'];
-        spotifyApi.setAccessToken(accessTokenRefreshed);
-      }, expiresIn/2*1000);
-    });
-    
-    
-  }catch(err){
-    console.log(err);
-  }
-  
-});
-
-
 
 
 
