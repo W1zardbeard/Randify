@@ -1,0 +1,35 @@
+.sideNav{
+    width:314px;
+    background-color:$lightWarmGrey;
+    height:100%;
+    padding-top:$s5;
+    padding-bottom:$s5;
+    padding-left:$s4;
+    display:flex;
+    flex-direction:column;
+    gap:$s7;
+   
+    align-items: flex-start;
+
+    img{
+        align-self:flex-start;
+    }
+
+    .menuLists{
+        display:flex;
+        flex-direction: column;
+        gap:$s5;
+
+        .menuList{
+
+            display:flex;
+            flex-direction: column;
+            gap:$s3;
+
+            .menuTitle{
+                color:$darkGrey;
+            }
+        }
+    }
+
+}

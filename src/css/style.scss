@@ -9,6 +9,9 @@
 
 //Components
 @import "./components/cta";
+@import "./components/sideNav";
+@import "./components/menuItem";
+@import "./components/topHeader";
 
 
 
@@ -17,7 +20,9 @@
 
 
 //Pages
+@import "./pages/background";
 @import "./pages/login";
+@import "./pages/dashboard";
 
 
 //Themes
