@@ -214,6 +214,22 @@ a {
   color: #1C0E06;
   align-items: center;
 }
+.topHeader .userProfile img {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+}
+.topHeader .userProfile div {
+  display: flex;
+  flex-direction: column;
+}
+.topHeader .userProfile div p {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #99938F;
+}
 
 body, .root {
   background-color: #F3F4F8;

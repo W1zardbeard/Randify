@@ -13,5 +13,24 @@
         gap:$s2;
         color:$black;
         align-items: center;
+
+        img{
+            width:50px;
+            height:50px;
+            object-fit: cover;
+            border-radius: $r1;
+        }
+
+
+        div{
+            display:flex;
+            flex-direction: column;
+
+            p{
+                font-size: 0.8rem;
+                font-weight: 400;
+                color:$darkGrey
+            }
+        }
     }
 }
