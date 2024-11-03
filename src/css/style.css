@@ -116,6 +116,19 @@ p {
   text-rendering: optimizeLegibility;
 }
 
+.menuTitle {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0;
+  font-size: 1rem;
+  line-height: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 a {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -149,6 +162,63 @@ a {
   box-shadow: 0px 4px 42px -12px rgba(29, 185, 84, 0.5);
 }
 
+.sideNav {
+  width: 314px;
+  background-color: #f9f9f9;
+  height: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  align-items: flex-start;
+}
+.sideNav img {
+  align-self: flex-start;
+}
+.sideNav .menuLists {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.sideNav .menuLists .menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.sideNav .menuLists .menuList .menuTitle {
+  color: #99938F;
+}
+
+.menuItem {
+  color: #99938F;
+}
+.menuItem:hover {
+  color: #FF7E3A;
+  cursor: pointer;
+}
+
+.topHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.topHeader h1 {
+  color: #1C0E06;
+}
+.topHeader .userProfile {
+  display: flex;
+  gap: 16px;
+  color: #1C0E06;
+  align-items: center;
+}
+
+body, .root {
+  background-color: #F3F4F8;
+}
+
 .login {
   background-color: #F3F4F8;
   height: 100vh;
@@ -173,4 +243,14 @@ a {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.dashboard {
+  height: 100vh;
+  display: flex;
+}
+
+.mainWrapper {
+  padding: 40px;
+  width: 100%;
 }/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,17 @@
+.topHeader{
+    display:flex;
+    justify-content: space-between;
+    width:100%;
+    align-items: center;
+    
+    h1{
+        color:$black;
+    }
+
+    .userProfile{
+        display:flex;
+        gap:$s2;
+        color:$black;
+        align-items: center;
+    }
+}
