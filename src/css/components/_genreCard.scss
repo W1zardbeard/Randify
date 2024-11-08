@@ -7,9 +7,15 @@
     border: solid 1px $peachSecondary;
     border-radius: $r3;
     color:$black;
+    
 
     img{
         align-self: center;
         border-radius:$r1;
+    }
+
+    &:hover{
+        background-color:$lightPeach;
+        cursor: pointer;
     }
 }

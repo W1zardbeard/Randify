@@ -205,8 +205,18 @@ a {
   width: 100%;
   align-items: center;
 }
-.topHeader h1 {
+.topHeader .pageTitle {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.topHeader .pageTitle h1 {
   color: #1C0E06;
+}
+.topHeader .pageTitle h2 {
+  color: #99938F;
+  font-size: 1rem;
+  font-weight: 400;
 }
 .topHeader .userProfile {
   display: flex;
@@ -239,6 +249,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow: hidden;
 }
 
 .genreContHeader {
@@ -247,9 +258,22 @@ a {
   align-items: center;
 }
 
+.genreListCont {
+  display: flex;
+  gap: 24px;
+}
+
 .chevronCont {
   display: flex;
   gap: 24px;
+}
+
+.swiper {
+  width: 100%;
+}
+
+.carouselButton:hover {
+  cursor: pointer;
 }
 
 .genreCard {
@@ -265,6 +289,10 @@ a {
 .genreCard img {
   align-self: center;
   border-radius: 8px;
+}
+.genreCard:hover {
+  background-color: #FFEADF;
+  cursor: pointer;
 }
 
 body, .root {
@@ -308,4 +336,5 @@ body, .root {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  overflow: hidden;
 }/*# sourceMappingURL=style.css.map */

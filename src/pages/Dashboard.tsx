@@ -25,6 +25,10 @@ export default function Dashboard(props: any) {
     const refreshToken = localStorage.getItem('refreshToken');
     //get expires in
     const expiresIn = localStorage.getItem('expiresIn');
+
+
+    //Current genre
+    const [currentGenre, setCurrentGenre] = useState('all');
     
 
     //check if access token is present and set it in the spotify api object 
@@ -78,7 +82,7 @@ export default function Dashboard(props: any) {
 
 
 
-    console.log(user);  
+
 
     return (
 
@@ -90,7 +94,8 @@ export default function Dashboard(props: any) {
 
             <div className="mainWrapper">
                 <TopHeader 
-                    pageTitle="Dashboard"
+                    pageTitle={"Dashboard"}
+                    currentGenre={currentGenre.charAt(0).toUpperCase() + currentGenre.slice(1).toLowerCase()}
                     user={user}
                 />
                 <GenreList />    
