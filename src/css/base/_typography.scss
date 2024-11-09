@@ -28,3 +28,8 @@ a{
  
 }
 
+.songTitle{
+    @include font(1.12rem, 700, 0, 24px);
+    color:$black;
+}
+
