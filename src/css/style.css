@@ -142,6 +142,20 @@ a {
   text-rendering: optimizeLegibility;
 }
 
+.songTitle {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0;
+  font-size: 1.12rem;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: #353535;
+}
+
 .ctaSpotify {
   color: #FFFFFF;
   background-color: #1DB954;
@@ -166,7 +180,7 @@ a {
   width: 314px;
   background-color: #f9f9f9;
   height: 100%;
-  padding-top: 40px;
+  padding-top: 24px;
   padding-bottom: 40px;
   padding-left: 32px;
   display: flex;
@@ -211,7 +225,7 @@ a {
   align-items: center;
 }
 .topHeader .pageTitle h1 {
-  color: #1C0E06;
+  color: #353535;
 }
 .topHeader .pageTitle h2 {
   color: #99938F;
@@ -221,7 +235,7 @@ a {
 .topHeader .userProfile {
   display: flex;
   gap: 16px;
-  color: #1C0E06;
+  color: #353535;
   align-items: center;
 }
 .topHeader .userProfile img {
@@ -244,12 +258,16 @@ a {
 .genreList {
   background-color: #FFFFFF;
   width: 100%;
+  height: auto;
   padding: 24px;
   border-radius: 24px;
   display: flex;
   flex-direction: column;
   gap: 24px;
   overflow: hidden;
+}
+.genreList h2 {
+  color: #353535;
 }
 
 .genreContHeader {
@@ -281,10 +299,10 @@ a {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 160px;
+  width: 120px;
   border: solid 1px #FFD7C2;
   border-radius: 16px;
-  color: #1C0E06;
+  color: #353535;
 }
 .genreCard img {
   align-self: center;
@@ -293,6 +311,139 @@ a {
 .genreCard:hover {
   background-color: #FFEADF;
   cursor: pointer;
+}
+
+.player {
+  width: 260px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  padding-bottom: 24px;
+  background-color: #FFFFFF;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+.player .songThumbnail {
+  width: 228px;
+  height: 228px;
+  border-radius: 16px;
+}
+.player .trackDetails {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.player .trackDetails p {
+  color: #99938F;
+}
+
+.audioCont {
+  width: 100%;
+  background-color: #FFFFFF;
+}
+.audioCont .controlBar {
+  flex-direction: column;
+  width: 100%;
+}
+.audioCont .controlBar .timerBar {
+  display: flex;
+  justify-content: space-between;
+}
+.audioCont .controlBar .timerBar .timer {
+  padding: 0;
+  color: #99938F;
+  --media-control-background:$white;
+}
+.audioCont .controlBar .seeker {
+  --media-control-padding: 4px;
+  width: 100%;
+  --media-range-track-width: 100%;
+  --media-control-background: rgb(27 54 93 / 0);
+  --media-control-hover-background: transparent;
+  --media-range-thumb-background:#FF7E3A;
+  --media-range-thumb-border: 2px solid #ffffff;
+  --media-range-bar-color:#FF7E3A;
+  --media-range-track-pointer-background: #FF7E3A;
+  --media-range-track-background: #FFD7C2;
+}
+.audioCont .controls {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  --media-control-background:#FF7E3A;
+  align-items: center;
+  gap: 8px;
+}
+.audioCont .controls .nextTrack:hover {
+  cursor: pointer;
+}
+.audioCont .controls .playBtn {
+  box-shadow: 0px 2px 15px 0px rgba(255, 126, 58, 0.5);
+  border-radius: 50%;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 130px;
+  bottom: 120%;
+  left: 50%;
+  margin-left: -65px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  background-color: #2B3442;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 6px;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  font-size: 0.875rem;
+  line-height: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #2B3442 transparent transparent transparent;
+}
+
+.tooltipHover:hover {
+  cursor: pointer;
+}
+
+.loaderContainer {
+  width: 100%;
+  height: 228px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 body, .root {
@@ -331,7 +482,7 @@ body, .root {
 }
 
 .mainWrapper {
-  padding: 40px;
+  padding: 24px;
   width: 100%;
   display: flex;
   flex-direction: column;

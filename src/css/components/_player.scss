@@ -1,0 +1,28 @@
+.player{
+    width:260px;
+    padding-left:$s2;
+    padding-right:$s2;
+    padding-top:$s2;
+    padding-bottom:$s3;
+    background-color:$white;
+    border-radius: $r4;
+    display:flex;
+    flex-direction:column;
+    gap:$s3;
+    align-items: center;
+
+    .songThumbnail{
+        width:228px;
+        height:228px;
+        border-radius:$r3;
+    }
+
+    .trackDetails{
+        display:flex;
+        flex-direction: column;
+        text-align: center;
+        p{
+            color:$darkGrey;
+        }
+    }
+}
