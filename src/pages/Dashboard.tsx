@@ -35,6 +35,8 @@ export default function Dashboard(props: any) {
     const [currentGenre, setCurrentGenre] = useState('All');
     //loading state
     const [loading, setLoading] = useState(true);
+    //recently played list
+    const [recentlyPlayedList, setRecentlyPlayedList] = useState<any>([]);
     
 
     //check if access token is present and set it in the spotify api object 
@@ -117,12 +119,13 @@ export default function Dashboard(props: any) {
                     //randomly choose song from returned array
                     const randomSongNumber = Math.floor(Math.random() * tracksSearchResult.tracks.items.length);
                     console.log(tracksSearchResult.tracks.items[randomSongNumber]);
-                    if(tracksSearchResult.tracks.items[randomSongNumber].preview_url == null || tracksSearchResult.tracks.items[randomSongNumber].preview_url == undefined){
+                    if(tracksSearchResult.tracks.items[randomSongNumber].preview_url == null || tracksSearchResult.tracks.items[randomSongNumber] == undefined){
                         console.log("No preview url found, trying again");
                         getRandomTrack();
                         return;
                     }
                     setCurrentTrack(tracksSearchResult.tracks.items[randomSongNumber]);
+                    setRecentlyPlayedList(prevList => [ tracksSearchResult.tracks.items[randomSongNumber],...prevList]);
                     setLoading(false);
                 })
             })
@@ -139,12 +142,13 @@ export default function Dashboard(props: any) {
                     //randomly choose song from returned array
                     const randomSongNumber = Math.floor(Math.random() * tracksSearchResult.tracks.items.length);
                     console.log(tracksSearchResult.tracks.items[randomSongNumber]);
-                    if(tracksSearchResult.tracks.items[randomSongNumber].preview_url == null || tracksSearchResult.tracks.items[randomSongNumber].preview_url == undefined){
+                    if(tracksSearchResult.tracks.items[randomSongNumber].preview_url == null || tracksSearchResult.tracks.items[randomSongNumber] == undefined){
                         console.log("No preview url found, trying again");
                         getRandomTrack();
                         return;
                     }
                     setCurrentTrack(tracksSearchResult.tracks.items[randomSongNumber]);
+                    setRecentlyPlayedList(prevList => [tracksSearchResult.tracks.items[randomSongNumber],...prevList]);
                     setLoading(false);
                 })
             })
@@ -186,7 +190,7 @@ export default function Dashboard(props: any) {
 
                 <div className="playerAndRecentlyPlayedContainer">
                 <Player 
-                    cover={currentTrack.album?.images?.[0]?.url || 'default-cover-url'}
+                    cover={currentTrack.album?.images?.[1]?.url || 'default-cover-url'}
                     previewUrl={currentTrack?.preview_url || ''}
                     name={currentTrack?.name || 'Unknown Track'}
                     artist={currentTrack?.artists?.[0]?.name || 'Unknown Artist'}
@@ -194,7 +198,9 @@ export default function Dashboard(props: any) {
                     getRandomTrack={getRandomTrack}
                     loading={loading}
                 />   
-                <RecentlyPlayedList />
+                <RecentlyPlayedList 
+                    recentlyPlayedList={recentlyPlayedList}
+                />
                 </div>
             </div>
         </div>
