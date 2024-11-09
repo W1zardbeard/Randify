@@ -116,6 +116,70 @@ app.post("/api/refresh", (req, res) => {
 
 
 
+// ==============================
+// Get genre list
+// ==============================
+app.post("/api/getAllGenres", async (req, res) => {
+  const spotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFY_CLIENT_ID,
+    clientSecret: process.env.SPOTIFY_SECRET,
+    redirectUri: process.env.REDIRECT_URI,
+    accessToken: req.body.accessToken
+  });
+  console.log(req.body.accessToken); 
+  spotifyApi.getAvailableGenreSeeds()
+  .then(function(data) {
+    let genreSeeds = data.body;
+    res.json(genreSeeds);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+});
+
+
+
+app.get("/api/getUserGenres", async (req, res) => {
+
+  //Hardcoded user genres for now
+  let userGenres = [
+  {
+    name: "metal", 
+  },
+  {
+    name: "emo",
+  },
+  {
+    name: "drum-and-bass",
+  },
+  {
+    name:"hip-hop", 
+  },
+  {
+    name:"techno",
+  },
+  {
+    name:"punk",
+  },
+  {
+    name:"metalcore",
+  },
+  {
+    name:"anime",
+  },
+  {
+    name:"death-metal",
+  },
+  {
+    name:"hardstyle",
+  },
+  {
+    name:"hardcore",
+  }];
+
+
+  res.send(userGenres);
+}
+);
 
 
 

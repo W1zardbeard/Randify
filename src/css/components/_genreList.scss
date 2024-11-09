@@ -1,0 +1,39 @@
+.genreList{
+    background-color:$white;
+    width:100%;
+    padding:$s3;
+    border-radius:$r4;
+    display:flex;
+    flex-direction: column;
+    gap:$s3;
+    overflow: hidden;
+}
+
+.genreContHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    
+}
+
+
+.genreListCont{
+    display:flex;
+    gap:$s3;
+}
+
+.chevronCont{
+    display:flex;
+    gap:$s3;	
+}
+
+.swiper {
+    width: 100%;
+}
+
+.carouselButton{
+
+    &:hover{
+        cursor: pointer;
+    }
+}

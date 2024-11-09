@@ -4,11 +4,11 @@ h1{
 }
 
 h2{
-    @include font(1.250rem, 400, 1px, 24px);
+    @include font(1.250rem, 700, 1px, 24px);
 }
 
 h3{
-    @include font(1rem, 400, 0, 24px);
+    @include font(1rem, 500, 0, 24px);
 }
 
 p{

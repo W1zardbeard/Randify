@@ -1,0 +1,10 @@
+get all genres
+useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken');
+        //get top genres
+        axios.post("/api/getAllGenres",  {accessToken}).then((res) => {
+            console.log(res.data)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }, [])
