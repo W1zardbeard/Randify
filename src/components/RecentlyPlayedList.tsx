@@ -13,11 +13,12 @@ export default function RecentlyPlayedList(props: any) {
                 {props.recentlyPlayedList?.map((track: any) => {
                     return (
                         <RecentlyPlayedCard
-                        cover={track.album?.images?.[2]?.url || 'default-cover-url'}
-                        previewUrl={track?.preview_url || ''}
-                        name={track?.name || 'Unknown Track'}
-                        artist={track?.artists?.[0]?.name || 'Unknown Artist'}
-                        openSpotify={track?.external_urls?.spotify || '#'}
+                            cover={track.albumCovers[2] || 'default-cover-url'}
+                            previewUrl={track?.preview_url || ''}
+                            name={track?.name || 'Unknown Track'}
+                            artist={track?.artist || 'Unknown Artist'}
+                            openSpotify={track?.openSpotify || '#'}
+                            generatedWord={track?.generatedWord || 'Unknown Word'}
                         />
                     )
                 })}

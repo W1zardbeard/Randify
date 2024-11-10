@@ -113,19 +113,31 @@ export default function Dashboard(props: any) {
             axios.get("https://random-word-api.herokuapp.com/word")
             .then((res) => {
                 const randomWord = res.data[0];
-                console.log(randomWord);
+             
                 spotifyApi.searchTracks(randomWord,{limit:50}).then(searchData =>{
                     const tracksSearchResult = searchData.body;
                     //randomly choose song from returned array
                     const randomSongNumber = Math.floor(Math.random() * tracksSearchResult.tracks.items.length);
-                    console.log(tracksSearchResult.tracks.items[randomSongNumber]);
+             
+                    const track = {
+                        albumCovers: [
+                            tracksSearchResult.tracks.items[randomSongNumber].album.images[0].url,
+                            tracksSearchResult.tracks.items[randomSongNumber].album.images[1].url,
+                            tracksSearchResult.tracks.items[randomSongNumber].album.images[2].url,
+                        ],
+                        previewUrl: tracksSearchResult.tracks.items[randomSongNumber].preview_url,
+                        name: tracksSearchResult.tracks.items[randomSongNumber].name,
+                        artist: tracksSearchResult.tracks.items[randomSongNumber].artists[0].name,
+                        openSpotify: tracksSearchResult.tracks.items[randomSongNumber].external_urls.spotify,
+                        generatedWord: randomWord
+                    }
                     if(tracksSearchResult.tracks.items[randomSongNumber].preview_url == null || tracksSearchResult.tracks.items[randomSongNumber] == undefined){
                         console.log("No preview url found, trying again");
                         getRandomTrack();
                         return;
                     }
-                    setCurrentTrack(tracksSearchResult.tracks.items[randomSongNumber]);
-                    setRecentlyPlayedList(prevList => [ tracksSearchResult.tracks.items[randomSongNumber],...prevList]);
+                    setCurrentTrack(track);
+                    setRecentlyPlayedList(prevList => [track,...prevList]);
                     setLoading(false);
                 })
             })
@@ -136,19 +148,31 @@ export default function Dashboard(props: any) {
             axios.get("https://random-word-api.herokuapp.com/word" + `?length=5`)
             .then((res) => {
                 const randomWord = res.data[0];
-                console.log(randomWord);
+                
                 spotifyApi.searchTracks(`track${randomWord} genre${currentGenre}`,{limit:50}).then(searchData =>{
                     const tracksSearchResult = searchData.body;
                     //randomly choose song from returned array
                     const randomSongNumber = Math.floor(Math.random() * tracksSearchResult.tracks.items.length);
-                    console.log(tracksSearchResult.tracks.items[randomSongNumber]);
+                    
+                    const track = {
+                        albumCovers: [
+                            tracksSearchResult.tracks.items[randomSongNumber].album.images[0].url,
+                            tracksSearchResult.tracks.items[randomSongNumber].album.images[1].url,
+                            tracksSearchResult.tracks.items[randomSongNumber].album.images[2].url,
+                        ],
+                        previewUrl: tracksSearchResult.tracks.items[randomSongNumber].preview_url,
+                        name: tracksSearchResult.tracks.items[randomSongNumber].name,
+                        artist: tracksSearchResult.tracks.items[randomSongNumber].artists[0].name,
+                        openSpotify: tracksSearchResult.tracks.items[randomSongNumber].external_urls.spotify,
+                        generatedWord: randomWord
+                    }
                     if(tracksSearchResult.tracks.items[randomSongNumber].preview_url == null || tracksSearchResult.tracks.items[randomSongNumber] == undefined){
                         console.log("No preview url found, trying again");
                         getRandomTrack();
                         return;
                     }
-                    setCurrentTrack(tracksSearchResult.tracks.items[randomSongNumber]);
-                    setRecentlyPlayedList(prevList => [tracksSearchResult.tracks.items[randomSongNumber],...prevList]);
+                    setCurrentTrack(track);
+                    setRecentlyPlayedList(prevList => [track,...prevList]);
                     setLoading(false);
                 })
             })
@@ -190,11 +214,11 @@ export default function Dashboard(props: any) {
 
                 <div className="playerAndRecentlyPlayedContainer">
                 <Player 
-                    cover={currentTrack.album?.images?.[1]?.url || 'default-cover-url'}
-                    previewUrl={currentTrack?.preview_url || ''}
+                    albumCovers={currentTrack?.albumCovers || 'default-cover-url'}
+                    previewUrl={currentTrack?.previewUrl || ''}
                     name={currentTrack?.name || 'Unknown Track'}
-                    artist={currentTrack?.artists?.[0]?.name || 'Unknown Artist'}
-                    openSpotify={currentTrack?.external_urls?.spotify || '#'}
+                    artist={currentTrack?.artist || 'Unknown Artist'}
+                    openSpotify={currentTrack?.openSpotify || '#'}
                     getRandomTrack={getRandomTrack}
                     loading={loading}
                 />   

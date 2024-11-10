@@ -33,6 +33,7 @@ export default function Player(props: any) {
         props.getRandomTrack();
     }
   
+    console.log(props.previewUrl);
     return (    
 
         
@@ -56,7 +57,7 @@ export default function Player(props: any) {
                     </>
                 : 
                     <>
-                        <img src={props.cover} className='songThumbnail'/>
+                        <img src={props.albumCovers[1]} className='songThumbnail'/>
                         <div className='trackDetails'>
                             <h2 className='songTitle'>{props.name}</h2>
                             <p>{props.artist}</p>

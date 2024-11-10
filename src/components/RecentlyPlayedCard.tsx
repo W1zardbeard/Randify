@@ -9,6 +9,7 @@ export default function RecentlyPlayedCard(props: any) {
                 </div>
             </div>
             <div className="recentlyPlayedButtons">
+            <p><span>Generated word:<br/></span> {props.generatedWord.charAt(0).toUpperCase() + props.generatedWord.slice(1)}</p>
                 <div className="tooltip">
                         <a href={props.openSpotify} target="_blank">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +18,7 @@ export default function RecentlyPlayedCard(props: any) {
                         </a>
                         <span className="tooltiptext">Listen on Spotify</span>
                 </div>
-                <p>Generated word</p>
+               
             </div>
         </div>
     )

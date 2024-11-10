@@ -8,7 +8,8 @@
     display: flex;
     flex-direction: column;
     gap:$s3;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .recentlyPlayedCards{
@@ -42,6 +43,20 @@
         }
        }
         
-        
+        .recentlyPlayedButtons{
+            display:flex;
+            align-items: center;
+            gap:$s2;
+            text-align: right;
+
+            p{
+                color:darkGrey;
+                span{
+                    font-weight: 700;
+                    
+                }
+            }
+           
+        }
     }
 }

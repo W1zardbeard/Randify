@@ -143,10 +143,28 @@ app.get("/api/getUserGenres", async (req, res) => {
   //Hardcoded user genres for now
   let userGenres = [
   {
+    name:"metalcore",
+  },
+  {
     name: "metal", 
   },
   {
     name: "emo",
+  },
+  {
+    name:"punk",
+  },
+  {
+    name:"death-metal",
+  },
+  {
+    name:"hardcore",
+  },
+  {
+    name:"anime",
+  },
+  {
+    name:"hardstyle",
   },
   {
     name: "drum-and-bass",
@@ -157,24 +175,7 @@ app.get("/api/getUserGenres", async (req, res) => {
   {
     name:"techno",
   },
-  {
-    name:"punk",
-  },
-  {
-    name:"metalcore",
-  },
-  {
-    name:"anime",
-  },
-  {
-    name:"death-metal",
-  },
-  {
-    name:"hardstyle",
-  },
-  {
-    name:"hardcore",
-  }];
+  ];
 
 
   res.send(userGenres);
