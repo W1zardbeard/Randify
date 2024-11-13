@@ -23,3 +23,55 @@ useEffect(() => {
         </a>
         <span className="tooltiptext">Listen on Spotify</span>
       </div>
+
+
+
+
+
+
+      
+    //State for user genres
+    const [userGenres, setUserGenres] = useState([])
+
+    //Grab the users top genres from the API
+    useEffect(() => {
+        // Fetch user genres from the API
+        axios.get('/api/getUserGenres').then((res) => {
+            // Format the genre names to have each word capitalized
+            const formattedGenres = res.data.map((genre: any) => {
+                genre.name = genre.name
+                    .split(' ')
+                    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                    .join(' ');
+                return genre;
+            });
+            // Update the state with the formatted genres
+            setUserGenres(formattedGenres);
+        }).catch((error) => {
+            // Log any errors to the console
+            console.log(error)
+        })
+    }, [])
+
+
+
+    nres, setUserGenres] = useState([]);
+    const swiperRef = useRef<SwiperType>();
+
+    useEffect(() => {
+        // Fetch user genres from the API
+        axios.get('/api/getUserGenres').then((res) => {
+            // Format the genre names to have each word capitalized
+            const formattedGenres = res.data.map((genre: any) => {
+                genre.name = genre.name
+                    .replace(/-/g, ' ') // Replace hyphens with spaces
+                    .split(' ')
+                    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                    .join(' ');
+                return genre;
+            });
+            // Update the state with the formatted genres
+            setUserGenres(formattedGenres);
+        }).catch((error) => {
+            // Log any errors to the console
+            console.log(error)

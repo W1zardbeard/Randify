@@ -9,6 +9,7 @@ export default function MenuList(props:any){
 
             {props.items.map((item:any, index:number) => (
                 <MenuItem
+                    currentPage={props.currentPage}
                     key={index}
                     name={item.name}
                     icon={item.icon}

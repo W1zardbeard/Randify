@@ -203,7 +203,7 @@ export default function Dashboard(props: any) {
 
             <div className="mainWrapper">
                 <TopHeader 
-                    pageTitle={"Dashboard"}
+                    pageTitle={"Home"}
                     currentGenre={currentGenre.charAt(0).toUpperCase() + currentGenre.slice(1).toLowerCase()}
                     user={user}
                 />

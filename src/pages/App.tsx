@@ -17,7 +17,7 @@ export default function App(){
         useEffect(() => {
             if(accessToken){
                 localStorage.setItem('accessToken', accessToken);
-                navigate('/dashboard');
+                navigate('/home');
             }
         }, [accessToken])
     }
