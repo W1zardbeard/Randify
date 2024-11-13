@@ -6,6 +6,7 @@ import ErrorPage from './pages/ErrorPage'
 import Dashboard from './pages/Dashboard'
 import Test from './pages/Test'
 import AuthHook from './hooks/AuthHook'
+import Genres from './pages/Genres'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,13 +19,17 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/dashboard",
+    path: "/home",
     element: <Dashboard />,
     errorElement: <ErrorPage />,
   },
   {
     path: "/test",
     element: <Test />,
+  },
+  {
+    path: "/genres",
+    element: <Genres />,
   }
 
 ]);
