@@ -11,8 +11,7 @@ export default function SideNav(){
     const currentPage = url.split('/')[1];
     const capitalisedPageName = currentPage.charAt(0).toUpperCase() + currentPage.slice(1).toLowerCase();
     
-    console.log(capitalisedPageName);
-    console.log(currentPage);
+ 
 
 
 

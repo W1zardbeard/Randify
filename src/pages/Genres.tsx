@@ -2,6 +2,9 @@ import SideNav from "../components/SideNav";
 import TopHeader from "../components/TopHeader";
 import SpotifyWebApi from 'spotify-web-api-node';
 import {useState, useEffect} from 'react';
+import GenreEdit from "../components/GenreEdit";
+import GenreList from "../components/GenreList";	
+import axios from 'axios';
 
 const spotifyApi = new SpotifyWebApi({
     clientId: 'e04c17fe2a1046138368640ad64f555e',
@@ -18,6 +21,9 @@ export default function Genres() {
      const expiresIn = localStorage.getItem('expiresIn');
      //get user
      const [user, setUser] = useState<any>({});
+
+     //all genres
+     const [allGenres, setAllGenres] = useState<any>([]);
 
 
      //check if access token is present and set it in the spotify api object 
@@ -64,6 +70,20 @@ export default function Genres() {
 
 
 
+    //get all genres
+    useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken');
+        //get top genres
+        axios.post("/api/getAllGenres",  {accessToken}).then((res) => {
+            setAllGenres(res.data);
+          
+        }).catch((error) => {
+            console.log(error)
+        })
+    }, [])
+
+
+
     return (
         <div className="dashboard">
             <SideNav />
@@ -73,7 +93,13 @@ export default function Genres() {
                     user={user}
                 />
 
-                <GenreEdit />
+                <GenreList 
+                    
+                /> 
+
+                <GenreEdit 
+                    allGenres={allGenres}
+                />
                 </div>
         </div>
     )
