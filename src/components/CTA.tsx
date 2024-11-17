@@ -33,31 +33,28 @@ export default function CTA(props){
                         {props.text}
                     </a>
                 );
-        // case "secondary":
-        //     return(
-        //         <button 
-        //             className={props.fullWidth ?  "fullWidth btnSecondary" : "btnSecondary" }
-        //             type={props.type}
-        //             disabled={props.disabled}
+        case "secondary":
+            return(
+                <button 
+                    className={"ctaSecondary" }
+                    type={props.type}
+                    disabled={props.disabled}
     
-        //             onClick = {() => {
-        //                 if(props.clickHandler){
-        //                     props.clickHandler();
-        //                 }
+                    onClick = {() => {
+                        if(props.clickHandler){
+                            props.clickHandler();
+                        }
                         
-        //             }}
-        //         >   
-        //             {props.icon && <img src="src/assets/icon-preview-header.svg"/> }
-        //             {props.icon ? 
-        //                 (tablet ?  null : props.text)
-        //                 : 
-        //                 props.text
-        //             }
+                    }}
+                >   
+                   
+                        {props.text}
+                    
                   
                    
                   
-        //         </button>
-        //     );
-        //     break;
+                </button>
+            );
+            break;
     }
 }

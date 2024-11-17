@@ -21,9 +21,10 @@ export default function Genres() {
      const expiresIn = localStorage.getItem('expiresIn');
      //get user
      const [user, setUser] = useState<any>({});
-
      //all genres
      const [allGenres, setAllGenres] = useState<any>([]);
+     //search
+     const [search, setSearch] = useState('');
 
 
      //check if access token is present and set it in the spotify api object 
@@ -82,7 +83,14 @@ export default function Genres() {
         })
     }, [])
 
+    function searchGetter(searchTerm: string){
+        setSearch(searchTerm);
+        
+    }
 
+    useEffect(() => {
+    console.log(search);
+    }, [search])
 
     return (
         <div className="dashboard">
@@ -98,7 +106,9 @@ export default function Genres() {
                 /> 
 
                 <GenreEdit 
+                    searchGetter={searchGetter}
                     allGenres={allGenres}
+                    searchTerm={search}
                 />
                 </div>
         </div>

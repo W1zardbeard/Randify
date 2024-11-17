@@ -1,0 +1,28 @@
+.searchBar{
+    padding-top:$s1;
+    padding-bottom:$s1;
+    padding-left:$s2;
+    padding-right:$s2;
+    background-color:$lightColdGrey;
+    border-style: none;
+    border-radius: $r1;
+    display:flex;
+    gap:$s1;
+    
+
+    input{
+        background-color: $lightColdGrey;
+        border-style: none;
+        
+        @include font(0.875rem, 400, 0, 17px);
+        color:$black;
+
+        &::placeholder{
+            color:$darkGrey;
+        }
+        
+        &:focus{
+            outline: none;
+        }
+    }
+}

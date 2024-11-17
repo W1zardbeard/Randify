@@ -176,6 +176,37 @@ a {
   box-shadow: 0px 4px 42px -12px rgba(29, 185, 84, 0.5);
 }
 
+.ctaSecondary {
+  color: #FF7E3A;
+  background-color: #ffffff;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  padding-left: 32px;
+  padding-right: 32px;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid #FF7E3A;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-basis: auto;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  font-size: 0.875rem;
+  line-height: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+.ctaSecondary:hover {
+  background-color: #FFEADF;
+  cursor: pointer;
+}
+
 .sideNav {
   width: 314px;
   background-color: #f9f9f9;
@@ -518,7 +549,12 @@ a {
   overflow-x: hidden;
   overflow-y: auto;
 }
-.genreEdit h2 {
+.genreEdit .genreEditHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.genreEdit .genreEditHeader h2 {
   color: #353535;
 }
 .genreEdit .genreEditList {
@@ -531,6 +567,46 @@ a {
   background-color: #ffffff;
   padding: 16px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchBar {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: #F3F4F8;
+  border-style: none;
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+}
+.searchBar input {
+  background-color: #F3F4F8;
+  border-style: none;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  font-size: 0.875rem;
+  line-height: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: #353535;
+}
+.searchBar input::-moz-placeholder {
+  color: #99938F;
+}
+.searchBar input::placeholder {
+  color: #99938F;
+}
+.searchBar input:focus {
+  outline: none;
 }
 
 body, .root {

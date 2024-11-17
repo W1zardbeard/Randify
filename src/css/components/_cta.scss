@@ -20,3 +20,27 @@
         box-shadow: 0px 4px 42px -12px rgba(29,185,84,0.5);
     }
 }
+
+.ctaSecondary{
+    color:$orangePrimary;
+    background-color:$whiteSolid;
+    padding-bottom:$s2;
+    padding-top:$s2;
+    padding-left:$s4;
+    padding-right:$s4;
+    text-decoration: none;
+    border-radius:$r1;
+    border: 1px solid $orangePrimary;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap:$s1;
+    flex-basis: auto;
+    @include font(0.875rem, 400, 0, 17px);
+
+    &:hover{
+        background-color:$lightPeach;
+        cursor: pointer;
+    }
+
+}
